@@ -1,5 +1,6 @@
 const Koa = require('koa');
-const { createRouterApp } = require('./router');
+const koaBodyParser = require('koa-bodyparser');
+const { createRouterApp } = require('../routes/router');
 
 let app;
 
@@ -8,6 +9,7 @@ const startApp = async () => {
 
   const router = createRouterApp();
 
+  app.use(koaBodyParser());
   app.use(router.routes());
   app.use(router.allowedMethods());
 
