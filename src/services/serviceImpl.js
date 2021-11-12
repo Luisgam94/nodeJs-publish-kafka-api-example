@@ -34,7 +34,7 @@ const saveMessageKafka = async (ctx) => {
     const messageToString = JSON.stringify(eventMessage);
     const message = { value: messageToString };
 
-    await publisherMessages('topic-dummy', message);
+    await publisherMessages(ctx.config.topic, message);
 
     log.info({ event: message }, 'event published in kafka');
 
